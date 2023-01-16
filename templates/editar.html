@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-      <form class="formularioJogo" method="POST" action="{{url_for('criar')}}" enctype="multipart/form-data">
+      <form class="formularioJogo" method="POST" action="{{url_for('atualizar')}}" enctype="multipart/form-data">
 
         <figure class="img-thumbnail col-md-4 forumarioImagem">
-          <img class="img-cluid" src="{{url_for('imagem', nome_arquivo = 'chield.jpg')}}" alt="">
+          <img class="img-cluid" src="{{url_for('imagem', nome_arquivo = capa_jogo )}}" alt="">
           <figcaption>
             <label for="arq" class="fileContainer">Mudar Capa            
               <input type="file" name="arquivo" accept=".jpg" id="arq">
@@ -12,8 +12,8 @@
         </figure>
 
         <fieldset>
+          <input type="hidden" name="id" value="{{id}}">
           {{form.csrf_token()}}
-
           <div class="form-group inputBox">
             {{form.nome.label(class='form-label')}}
             {{form.nome(class='form-control')}}
@@ -30,7 +30,8 @@
             {{form.salvar(class='btn btn-success')}}
             <a href="{{url_for('index')}}" class="btn btn-danger">Voltar</a>
           </div>
-        </fieldset>
-      </form>
 
+        </fieldset>
+
+      </form>
 {% endblock %}
